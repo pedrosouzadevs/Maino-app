@@ -1,0 +1,11 @@
+<h1>Here are the posts</h1>
+
+<%@posts.each do |p| %>
+  <div><%= p.content %></div>
+  <% p.comments.each do |c| %>
+    <span><%= c.content %></span>
+  <% end %>
+
+<% end %>
+
+  <div><%= paginate @posts %></div>
