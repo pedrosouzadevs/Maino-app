@@ -1,11 +1,27 @@
-<h1>Here are the posts</h1>
-
-<%@posts.each do |p| %>
-  <div><%= p.content %></div>
-  <% p.comments.each do |c| %>
-    <span><%= c.content %></span>
+ <div>
+  <h2>Write the new post here</h2>
+  <%= simple_form_for Post.new do |f| %>
+      <%= f.input :title, label: "Write your post title here:" %>
+      <%= f.input :content, label: "Write your post content here:" %>
+      <%= f.submit class: "button-50" %>
+    <% end %>
+</div>
+<div>
+  <h2>Here are the posts</h2>
+  <% @posts.each do |post| %>
+    <div>
+      <p class="fw-bold"><%= post.title %></p>
+      <p><%= post.content %></p>
+      <% post.comments.each do |comment| %>
+        <p class="text-sm"><%= comment.content %></p>
+      <% end %>
+      <h2>Add a comment</h2>
+      <%= simple_form_for [post, Comment.new] do |f| %>
+        <%= f.input :content, label: false %>
+        <%= f.submit class: "button-50" %>
+      <% end %>
+    </div>
   <% end %>
-
-<% end %>
+</div>
 
   <div><%= paginate @posts %></div>

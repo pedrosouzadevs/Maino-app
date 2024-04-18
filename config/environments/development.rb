@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -74,4 +74,13 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => 'api',
+    :password => 'd8b78971b9cc67ed9ec16aadb98bea26',
+    :address => 'live.smtp.mailtrap.io',
+    :host => 'live.smtp.mailtrap.io',
+    :port => '587',
+    :authentication => :login
+  }
 end

@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[update destroy]
-  before_action :set_event, only: %i[create update destroy]
   before_action :authenticate_user!, only: %i[create update destroy]
 
   def index
@@ -11,9 +10,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to event_path(@event)
+      redirect_to posts_path
     else
-      render "events/show", status: unprocessable_entity
+      render "index", status: unprocessable_entity
     end
   end
 
@@ -21,7 +20,7 @@ class PostsController < ApplicationController
     @post.content = params[:content]
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to posts_path
     else
       render "index", status: unprocessable_entity
     end
@@ -41,6 +40,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :title)
   end
 end
