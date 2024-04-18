@@ -1,27 +1,23 @@
- <div>
-  <h2>Write the new post here</h2>
-  <%= simple_form_for Post.new do |f| %>
+<h2>Add a post</h2>
+    <%= simple_form_for Post.new do |f| %>
       <%= f.input :title, label: "Write your post title here:" %>
       <%= f.input :content, label: "Write your post content here:" %>
       <%= f.submit class: "button-50" %>
     <% end %>
-</div>
-<div>
-  <h2>Here are the posts</h2>
-  <% @posts.each do |post| %>
-    <div>
-      <p class="fw-bold"><%= post.title %></p>
-      <p><%= post.content %></p>
-      <% post.comments.each do |comment| %>
-        <p class="text-sm"><%= comment.content %></p>
-      <% end %>
-      <h2>Add a comment</h2>
-      <%= simple_form_for [post, Comment.new] do |f| %>
-        <%= f.input :content, label: false %>
-        <%= f.submit class: "button-50" %>
-      <% end %>
-    </div>
+
+<%@posts.each do |post| %>
+  <div><%= post.title %></div>
+  <% post.comments.each do |comment| %>
+    <% if comment.user_id == 0 %>
+      <span class="text-sm">Usuário anônimo</span>
+      <span class="text-sm"><%= comment.content %></span>
+    <% else %>
+      <% user_email = User.find(comment.user_id).email %>
+      <span class="text-sm"> <%= user_email %>  </span>
+      <span class="text-sm"><%= comment.content %></span>
+    <% end %>
   <% end %>
-</div>
+
+<% end %>
 
   <div><%= paginate @posts %></div>

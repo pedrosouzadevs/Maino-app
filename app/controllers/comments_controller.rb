@@ -1,15 +1,24 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: %i[create update destroy]
   before_action :set_comment, only: %i[update destroy]
+  before_action :authenticate_user!, only: %i[ create ]
+
+
+  def show
+  end
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.user = current_user
+    if current_user != nil
+      @comment.user_id = current_user.id
+    else
+      @comment.user = nil
+    end
     @comment.post = @post
     if @comment.save
-      redirect_to comment_path(@comment)
+      redirect_to posts_path
     else
-      render "events/show", status: unprocessable_entity
+      render posts_path, status: unprocessable_entity
     end
   end
 
@@ -18,9 +27,9 @@ class CommentsController < ApplicationController
     @comment.post_id = @post
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to comment_path(@comment)
+      redirect_to posts_path
     else
-      render "index", status: unprocessable_entity
+      render posts_path, status: unprocessable_entity
     end
   end
 

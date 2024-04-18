@@ -1,9 +1,17 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[update destroy]
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, only: %i[ new create update destroy]
 
   def index
     @posts = Post.order(updated_at: :desc).page(params[:page])
+  end
+
+  def show
+
+  end
+
+  def new
+    @post = Post.new
   end
 
   def create
@@ -12,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
-      render "index", status: unprocessable_entity
+      render posts_path, status: unprocessable_entity
     end
   end
 
@@ -22,7 +30,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
-      render "index", status: unprocessable_entity
+      render posts_path, status: unprocessable_entity
     end
   end
 
