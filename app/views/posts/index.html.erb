@@ -1,10 +1,4 @@
-<h2>Add a post</h2>
-    <%= simple_form_for Post.new do |f| %>
-      <%= f.input :title, label: "Write your post title here:" %>
-      <%= f.input :content, label: "Write your post content here:" %>
-      <%= f.submit class: "button-50" %>
-    <% end %>
-
+<%= link_to "New Post", new_post_path, data: { turbo_frame: "modal" }%>
 <%@posts.each do |post| %>
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
