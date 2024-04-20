@@ -1,14 +1,23 @@
 <%= turbo_frame_tag "modal" do %>
   <div>
-    <h2>Add a post</h2>
-    <%= simple_form_for Post.new do |f| %>
-      <%= f.input :title, label: "Write your post title here:" %>
-      <%= f.input :content, label: "Write your post content here:" %>
-      <%= f.submit class: "button-50" %>
-    <% end %>
-    <%= link_to "Cancel", "#", data: {
-      controller: "modal",
-      action: "modal#close"
-    }, class: "cancel-button" %>
+
   </div>
 <% end %>
+<div class=" container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <div class="post-preview">
+              <h2>Add a post</h2>
+              <%= simple_form_for Post.new do |f| %>
+                <%= f.input :title, label: "Write your post title here:" %>
+                <%= f.input :content, label: "Write your post content here:" %>
+                <%= f.button :submit, "Create Post", class: "create_post" %>
+              <% end %>
+            </div>
+        </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 py-2">
+              <%= link_to "Cancel", :back , class: "cancel-button" %>
+            </div>
+    </div>
+  </div>

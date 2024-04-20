@@ -29,3 +29,61 @@
   /* Add the drop shadow */
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
 }
+
+.create_post {
+  background-color: #1530ff;
+  font-size: 12px;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  text-decoration: none;
+  justify-content: left;
+}
+.create_post:hover {
+  background-color: #03d42a;
+}
+
+.popup_post {
+  background-color: #1530ff;
+  font-size: 12px;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  max-width: 125px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup_post:hover {
+  background-color: #2640fe;
+}
+
+.cancel-button {
+  background-color: #e12c2c;
+  font-size: 12px;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  text-decoration: none;
+  justify-content: right;
+
+}
+.cancel-button:hover {
+  background-color: #2640fe;
+}
+
+.container_post {
+  max-width: 125px;
+  display: flex;
+  justify-content: center;
+}
