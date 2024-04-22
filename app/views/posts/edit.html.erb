@@ -1,6 +1,17 @@
-<h2>Edit your post here:</h2>
-    <%= simple_form_for @post do |f| %>
-      <%= f.input :title, label: "Edit your post title here:" %>
-      <%= f.input :content, label: "Edit your post content here:" %>
-      <%= f.submit class: "button-50" %>
-    <% end %>
+<div class=" container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <div class="post-preview">
+        <h2 class="text-center">Add a post</h2>
+        <%= simple_form_for @post do |f| %>
+          <%= f.input :title, label: "Edit your title here" %>
+          <%= f.input :content, label: "Edit your content here" %>
+          <%= f.button :submit, "Edit Post", class: "create_post" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-10 col-lg-8 col-xl-7 py-2">
+      <%= link_to "Cancel", :back , class: "cancel-button" %>
+    </div>
+  </div>
+</div>

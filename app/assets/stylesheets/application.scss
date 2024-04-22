@@ -55,13 +55,46 @@
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
-  max-width: 125px;
+  max-width: 175px;
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 .popup_post:hover {
+  background-color: #2640fe;
+}
+
+.edit_post_button {
+  background-color: #1530ff;
+  font-size: 12px;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  max-width: 175px;
+  transform: translate(-50%, -50%);
+}
+.edit_post_button:hover {
+  background-color: #2640fe;
+}
+
+.delete_post {
+  background-color: #1530ff;
+  font-size: 12px;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  max-width: 175px;
+  transform: translate(-50%, -50%);
+}
+.delete_post:hover {
   background-color: #2640fe;
 }
 
@@ -83,7 +116,7 @@
 }
 
 .container_post {
-  max-width: 125px;
+  max-width: 175px;
   display: flex;
   justify-content: center;
 }

@@ -1,10 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: %i[create update destroy]
-  before_action :set_comment, only: %i[update destroy]
-  before_action :authenticate_user!, only: %i[ create ]
+  before_action :set_post, only: %i[new create]
+  before_action :authenticate_user!, except: %i[ new create ]
 
-
-  def show
+  def new
   end
 
   def create
@@ -12,30 +10,16 @@ class CommentsController < ApplicationController
     if current_user != nil
       @comment.user_id = current_user.id
     else
-      @comment.user = nil
+      @comment.user_id = nil
     end
     @comment.post = @post
     if @comment.save
-      redirect_to posts_path
+      comment_id = @comment.id
+      @notifications = Notification.create(user_id: @post.user_id, post_id: @post.id, comment_id: comment_id)
+      redirect_to post_path(@post)
     else
-      render posts_path, status: unprocessable_entity
+      render post_comments_path(@post), status: unprocessable_entity
     end
-  end
-
-  def update
-    @comment.content = params[:content]
-    @comment.post_id = @post
-    @comment.user_id = current_user.id
-    if @comment.save
-      redirect_to posts_path
-    else
-      render posts_path, status: unprocessable_entity
-    end
-  end
-
-  def destroy
-    @comment.destroy
-    redirect_to post_path(@post)
   end
 
   private
@@ -51,4 +35,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
+
 end
