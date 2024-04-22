@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     delete 'users', to: 'users/registrations#destroy'
   end
   root to: "posts#index"
-  resources :comments, except: %i[ :show ]
   resources :posts do
     resources :comments
   end
+
+  delete "posts", to: "posts#destroy", as: :delete_post
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

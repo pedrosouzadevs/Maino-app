@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="btn btn-secondary bg-dark-subtle border-0 text-black dropdown-toggle" type="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="<%= asset_path('notification.png') %>" width="20" height="20"> <%= Notification.where(user_id: current_user).count %>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="notificationDropdown">
+    <% Notification.where(user_id: current_user).each do |notification| %>
+      <li><%= link_to notification.post.title, post_path(notification.post_id) %></li>
+    <% end %>
+  </ul>
+</div>

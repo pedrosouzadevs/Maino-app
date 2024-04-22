@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_16_234520) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_035510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_234520) do
     t.datetime "updated_at", null: false
     t.bigint "post_id", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "comment_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -46,5 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_234520) do
   end
 
   add_foreign_key "comments", "posts"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "posts"
+  add_foreign_key "notifications", "users"
   add_foreign_key "posts", "users"
 end

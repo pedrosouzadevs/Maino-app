@@ -17,13 +17,13 @@ puts "Deleting all comments..."
 
 puts "Creating users..."
 
-User.create!(email: "pedro@gmail.com", password: "123456")
-User.create!(email: "pedro2@gmail.com", password: "123456")
-User.create!(email: "pedro3@gmail.com", password: "123456")
-User.create!(email: "pedro4@gmail.com", password: "123456")
-User.create!(email: "pedro5@gmail.com", password: "123456")
-User.create!(email: "pedro6@gmail.com", password: "123456")
-User.create!(email: "pedro7@gmail.com", password: "123456")
+User.create!(email: "pedro@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
+User.create!(email: "pedro2@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
+User.create!(email: "pedro3@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
+User.create!(email: "pedro4@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
+User.create!(email: "pedro5@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
+User.create!(email: "pedro6@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
+User.create!(email: "pedro7@gmail.com", password: "123456", name: Faker::Creature::Dog.name)
 
 puts "Creating 100 posts..."
 100.times do
