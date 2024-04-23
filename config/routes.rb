@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   end
   root to: "posts#index"
   resources :posts do
+    post 'create_txt', on: :collection
+    resources :tags
     resources :comments
   end
-
   delete "posts", to: "posts#destroy", as: :delete_post
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
