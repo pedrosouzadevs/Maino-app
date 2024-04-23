@@ -119,6 +119,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dockerfile-rails (1.6.8)
+      rails (>= 3.0.0)
     dotenv (3.1.0)
     dotenv-rails (3.1.0)
       dotenv (= 3.1.0)
@@ -318,6 +320,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  dockerfile-rails (>= 1.6)
   dotenv-rails
   faker
   font-awesome-sass (~> 6.1)

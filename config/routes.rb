@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "posts#index"
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }, skip: [:registrations]
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
     patch 'users', to: 'users/registrations#update'
     delete 'users', to: 'users/registrations#destroy'
   end
-  root to: "posts#index"
   resources :posts do
     resources :comments
   end
