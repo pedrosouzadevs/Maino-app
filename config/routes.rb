@@ -12,10 +12,9 @@ Rails.application.routes.draw do
     delete 'users', to: 'users/registrations#destroy'
   end
   resources :posts do
-    post 'create_txt', on: :collection
-    resources :tags
     resources :comments
   end
+
   delete "posts", to: "posts#destroy", as: :delete_post
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

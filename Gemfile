@@ -52,7 +52,6 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'kaminari'
 gem 'faker'
-gem 'sidekiq'
 
 
 group :development, :test do

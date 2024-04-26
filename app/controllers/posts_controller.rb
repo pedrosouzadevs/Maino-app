@@ -1,17 +1,11 @@
-require 'sidekiq'
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[ new create update destroy]
-  before_action :verify_user, only: [:show]
-  include Sidekiq::Job
+  before_action :verificar_usuario, only: [:show]
 
   def index
     @posts = Post.order(updated_at: :desc).page(params[:page])
-    # if params[:query].present?
-    #   @posts = Post.find_by(params[:query]).page(params[:page])
-    # else
-    #   @posts = Post.all
-    # end
+
   end
 
   def show
@@ -34,24 +28,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def create_txt
-    job_count = params["txt_files"].size
-    completed_jobs = 0
-    params[:txt_files].each do |file|
-      file_content = file.read
-      lines = file_content.split("\n")
-      title = lines.first.strip
-      completed_jobs += 1
-      content = lines[1..].join("\n").strip      # Cria um novo job para processar o arquivo de texto
-      UploadJob.perform_async(title, content, current_user.id)
-      redirect_to posts_path if completed_jobs == job_count
-    end
-  end
-
-  def create_tag
-
-  end
-
   def update
     if @post.update(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
@@ -72,7 +48,7 @@ class PostsController < ApplicationController
     @comments = @post.comments
   end
 
-  def verify_user
+  def verificar_usuario
       if current_user && current_user.id == Post.find(params[:id]).user_id
       @deletar_notificacao = true
     else

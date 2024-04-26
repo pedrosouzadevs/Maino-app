@@ -3,12 +3,8 @@
     <img src="<%= asset_path('notification.png') %>" width="20" height="20"> <%= Notification.where(user_id: current_user).count %>
   </button>
   <ul class="dropdown-menu" aria-labelledby="notificationDropdown">
-    <% if Notification.where(user_id: current_user).count != 0 %>
-      <% Notification.where(user_id: current_user).each do |notification| %>
-        <li><%= link_to notification.post.title, post_path(notification.post_id) %></li>
-      <% end %>
-    <% else %>
-      <li class="text-center">There is no notifications</li>
+    <% Notification.where(user_id: current_user).each do |notification| %>
+      <li><%= link_to notification.post.title, post_path(notification.post_id) %></li>
     <% end %>
   </ul>
 </div>
