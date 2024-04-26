@@ -34,13 +34,6 @@ puts "Creating 100 posts..."
   )
 end
 
-100.times do
-  Tag.create!(
-    tag_name: Faker::Lorem.sentence(word_count: 1),
-    post_id: rand(1..100)
-  )
-end
-
 puts "Creating 500 comments..."
 
 500.times do
