@@ -1,6 +1,6 @@
 <div>
   <div class="flex mb-5 mt-2 div_post ">
-    <%= link_to "New Post", new_post_path, data: { turbo_frame: "modal" }, class:"popup_post row gx-4 gx-lg-5 justify-content-center"%>
+    <%= link_to "New Post", new_post_path, class:"popup_post row gx-4 gx-lg-5 justify-content-center"%>
   </div>
   <div>
     <%@posts.each do |post| %>
@@ -11,6 +11,9 @@
                 <div class="post-preview">
                     <a href="<%= post_path(post)%>">
                         <h2 class="post-title"><%= post.title %></h2>
+                        <% Tag.where(post_id: post.id).each do |tag| %>
+                          <span>#<%= tag.tag_name %></span>
+                        <% end %>
                         <h3 class="post-subtitle"><%= post.content.slice(0,100) +"..." %></h3>
                     </a>
                     <p class="post-meta">

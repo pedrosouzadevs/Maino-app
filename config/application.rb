@@ -29,6 +29,7 @@ module MainoApp
     #
     config.i18n.default_locale = :en
     config.time_zone = "Brasilia"
+    config.active_job.queue_adapter = :sidekiq
     # ...
     # config.eager_load_paths << Rails.root.join("extras")
   end

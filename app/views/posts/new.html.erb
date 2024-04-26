@@ -1,17 +1,31 @@
-<div class=" container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-          <div class="post-preview">
-            <h2 class="text-center">Add a post</h2>
-            <%= simple_form_for Post.new do |f| %>
-              <%= f.input :title, label: "Write your post title here:" %>
-              <%= f.input :content, label: "Write your post content here:" %>
-              <%= f.button :submit, "Create Post", class: "create_post" %>
-            <% end %>
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <div class="post-preview">
+        <h2 class="text-center">Add a post</h2>
+        <%= simple_form_for Post.new do |f| %>
+          <%= f.input :title, label: "Post Title" %>
+          <%= f.input :content, label: "Post Content" %>
+          <div class="d-grid gap-2">
+            <%= f.button :submit, "Create Post", class: "btn btn-primary" %>
+            <%= link_to "Cancel", :back, class: "btn btn-danger" %>
           </div>
+        <% end %>
       </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 py-2">
-            <%= link_to "Cancel", :back , class: "cancel-button" %>
+      <hr class="my-5">
+      <div class="post-upload">
+        <%= form_tag(create_txt_posts_path, multipart: true) do %>
+          <h2 class="text-center">Upload TXT Files</h2>
+          <div class="mb-3">
+            <label for="txt-files" class="form-label"></label>
+            <input type="file" class="form-control" id="txt-files" name="txt_files[]" multiple>
           </div>
+          <div class="d-grid gap-2">
+            <%= submit_tag "Create Posts", class: "btn btn-primary" %>
+            <%= link_to "Cancel", :back, class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
+</div>
