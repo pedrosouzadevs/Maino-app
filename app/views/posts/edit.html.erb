@@ -1,17 +1,18 @@
-<div class=" container px-4 px-lg-5">
+<div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
+      <!-- Post form -->
       <div class="post-preview">
-        <h2 class="text-center">Add a post</h2>
+        <h2 class="text-center">Edit your post</h2>
         <%= simple_form_for @post do |f| %>
           <%= f.input :title, label: "Edit your title here" %>
           <%= f.input :content, label: "Edit your content here" %>
-          <%= f.button :submit, "Edit Post", class: "create_post" %>
+          <div class="d-grid gap-2">
+            <%= f.button :submit, "Edit Post", class: "btn btn-primary" %>
+            <%= link_to "Cancel", :back, class: "btn btn-danger" %>
+          </div>
         <% end %>
       </div>
-    </div>
-    <div class="col-md-10 col-lg-8 col-xl-7 py-2">
-      <%= link_to "Cancel", :back , class: "cancel-button" %>
     </div>
   </div>
 </div>

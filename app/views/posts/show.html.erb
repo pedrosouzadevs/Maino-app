@@ -6,6 +6,9 @@
           <p>
             <h2 class="post-title text-center my-4"><%= @post.title %></h2>
             <h3 class="post-subtitle text-right"><%= @post.content%></h3>
+            <% Tag.where(post_id: @post.id).each do |tag| %>
+              <span>#<%= tag.tag_name %></span>
+            <% end %>
           </p>
           <p class="post-meta">
             Posted by <%= User.find(@post.user_id).name  %>
@@ -16,15 +19,18 @@
       <hr class="my-4" />
       <!-- Pager-->
       <% if current_user == nil || current_user.id != @post.user_id%>
-        <div class="d-flex mb-5 mt-2 div_post justify-content-center">
+        <div class="d-flex mb-5 mt-2 div_post justify-content-between">
           <%= link_to "New Comment", new_post_comment_path(@post), class:"btn btn-primary rounded text-uppercase"%>
+          <%= link_to "New Tag", new_post_tag_path(@post), class:"btn btn-primary rounded text-uppercase"%>
         </div>
       <% else %>
         <div class="d-flex mb-5 mt-2 div_post justify-content-between">
           <%= link_to "Edit Post", edit_post_path(@post), class:"btn btn-primary rounded text-uppercase"%>
           <%= link_to "New Comment", new_post_comment_path(@post), class:"btn btn-primary rounded text-uppercase"%>
+          <%= link_to "New Tag", new_post_tag_path(@post), class:"btn btn-primary rounded text-uppercase"%>
           <%= link_to "Delete this Post", post_path(@post), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary rounded text-uppercase"%>
         </div>
+
       <% end %>
       <div>
         <% @post.comments.each do |comment| %>
